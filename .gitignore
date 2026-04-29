@@ -1,0 +1,7 @@
+node_modules
+dist
+.env
+backend/uploads/
+.DS_Store
+*.traineddata
+frontend/dist
