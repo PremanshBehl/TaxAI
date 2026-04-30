@@ -2,8 +2,15 @@ import express from 'express';
 import multer from 'multer';
 import { uploadInvoice, getInvoices, getInvoiceById, getDashboardStats, deleteInvoice, updateInvoice } from '../controllers/invoiceController';
 import { protect } from '../middleware/auth';
+import fs from 'fs';
+import path from 'path';
 
 const router = express.Router();
+
+const uploadDir = path.join(process.cwd(), 'uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const storage = multer.diskStorage({
   destination(req, file, cb) {
