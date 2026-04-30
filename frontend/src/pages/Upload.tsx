@@ -59,7 +59,7 @@ const Upload = () => {
         setProgress(p => Math.min(p + 10, 90));
       }, 500);
 
-      const response = await axios.post('http://localhost:5001/api/invoices/upload', formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/invoices/upload`, formData, {
         headers: { 
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`

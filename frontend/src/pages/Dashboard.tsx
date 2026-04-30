@@ -33,7 +33,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/invoices/stats', {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/invoices/stats`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setData(response.data);

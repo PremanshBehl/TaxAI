@@ -12,7 +12,7 @@ const Invoices = () => {
 
   const fetchInvoices = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/invoices', {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/invoices`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setInvoices(response.data);
@@ -48,7 +48,7 @@ const Invoices = () => {
   const handleDelete = async (id: string) => {
     if (!window.confirm('Are you sure you want to delete this invoice?')) return;
     try {
-      await axios.delete(`http://localhost:5001/api/invoices/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/invoices/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setInvoices(invoices.filter(inv => inv._id !== id));

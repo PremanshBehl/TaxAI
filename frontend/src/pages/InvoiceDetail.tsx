@@ -16,7 +16,7 @@ const InvoiceDetail = () => {
   useEffect(() => {
     const fetchInvoice = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/api/invoices/${id}`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/invoices/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setInvoice(response.data);
@@ -33,7 +33,7 @@ const InvoiceDetail = () => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.put(`http://localhost:5001/api/invoices/${id}`, editData, {
+      const response = await axios.put(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api/invoices/${id}`, editData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setInvoice(response.data);
@@ -109,7 +109,7 @@ const InvoiceDetail = () => {
           <div className="flex-1 bg-muted/10 p-6 flex items-center justify-center">
             {invoice.uploadedFileUrl ? (
               <img 
-                src={`http://localhost:5001/${invoice.uploadedFileUrl}`} 
+                src={`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/${invoice.uploadedFileUrl}`} 
                 alt="Invoice" 
                 className="max-h-full max-w-full object-contain rounded-lg shadow-lg border border-border/50"
               />
